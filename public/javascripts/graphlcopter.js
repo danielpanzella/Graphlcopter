@@ -1,43 +1,45 @@
 graphlcopter = {};
 
 graphlcopter.chart = function() {
-	var chart, vgUrl;
+	var chart;
 		
-	return { 
-		setUrl: function(url) {
-			vgUrl = url;
-		},
+	return {
 		addSeries: function(metricName){
 			$("#error").text("");
 			$.ajax({
-				url: vgUrl+"?path=" + metricName + "&start=1&end=11111111111",
-				crossDomain: true,
-				dataType: 'jsonp',
-				jsonpCallback: "graphlcopter.chart.loadData",
+				url: "/metrics/?path=" + metricName + "&start=1&end=11111111111",
+				dataType: "json",
+				success: this.loadData
 			})
 		},
 		
-		loadData: function(data){
+		loadData: function(data, textStatus, jqXHR){
 			data = data.data;
 			for (var i = 0; i < data.length; i++) {
 			    var series = {
-					type: "line",
+					type: "line",	
 					name: data[i].name,
 					pointInterval: data[i].step * 1000,
 					pointStart: data[i].start * 1000,
 					data: data[i].values
 				}
-				chart && chart.addSeries(series);
+				
+				if (chart) {
+					var placeHolder = chart.get("placeholder");
+					placeHolder && placeHolder.remove();
+					chart.addSeries(series);
+				}
+				
 			}
 		},
 
 		init: function(config){
 			vgUrl = $("#server").val();
-			chart = new Highcharts.Chart({
+			chart = new Highcharts.StockChart({
 		        chart: {
 		            renderTo: config.renderTo || 'graph',
 					zoomType: 'x',
-		            type: 'line',
+					type: 'line',
 					width: config.width || null
 		        },
 		        title: {
@@ -56,7 +58,7 @@ graphlcopter.chart = function() {
 						color: '#808080'
 					}]
 		        },
-		        series: []
+				series:[{ id: "placeholder", data: [1] }]
 		    });
 		}
 	};

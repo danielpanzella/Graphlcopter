@@ -1,7 +1,6 @@
 $(document).ready(function() {
-	$(document).ready(function () {
-	    $('body').layout({ applyDefaultStyles: true });
-	});
+    $('body').layout({ applyDefaultStyles: true });
+
 	
 	graphlcopter.chart.init({ title: "graphlcopter", renderTo: "graph", width: 1000 });
 	graphlcopter.statList.init("stat-list");
