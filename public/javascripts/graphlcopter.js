@@ -33,7 +33,6 @@ graphlcopter.chart = function() {
     },
 
     init: function(config){
-      vgUrl = $("#server").val();
       chart = new Highcharts.StockChart({
         chart: {
           renderTo: config.renderTo || 'graph',
