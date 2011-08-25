@@ -18,14 +18,14 @@ object Application extends Controller {
   def browse(path: Option[String]) = {
     val p = path.getOrElse("*")
     val req = (:/(veloHost, veloPort) / "browse") <<? Map("path" -> p)
-    http(req >- { x => Text(x) })
+    http(req >- { x => Json(x) })
   }
 
   def metrics(path: Option[String], start: Option[String], end: Option[String]) = {
     (path, start, end) match {
       case (Some(path), Some(start), Some(end)) => {
         val req = :/(veloHost, veloPort) <<? Map("path" -> path, "start" -> start, "end" -> end)
-        http(req >- { x => Text(x) })
+        http(req >- { x => Json(x) })
         // Text(result)
       }
       case _ => Text("missing parameters, set path, start, end")

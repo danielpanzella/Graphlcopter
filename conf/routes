@@ -5,6 +5,7 @@
 # Home page
 GET     /                                       Application.index
 GET     /metrics/                               Application.metrics
+GET     /browse/                               Application.browse
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
