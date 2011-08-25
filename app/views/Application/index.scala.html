@@ -3,19 +3,36 @@
   <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="public/javascripts/jquery.layout-latest.js" type="text/javascript"></script>
     <script src="public/javascripts/jquery.jstree.js" type="text/javascript"></script>
     <script src="public/javascripts/highstock/highstock.src.js" type="text/javascript"></script>
     <script src="public/javascripts/graphlcopter.js" type="text/javascript"></script>
     <script src="public/javascripts/charts.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="css/cupertino/jquery-ui-1.8.16.custom.css">
-    <title>graphlcopter</title>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/jquery-ui-1.8.16.custom.css">
+    <link rel="stylesheet" href="public/stylesheets/bootstrap-1.1.0.min.css">    <title>graphlcopter</title>
   </head>
   <body>
-    <div id="graph" class="ui-layout-center"></div>
-    <div id="status-bar" class="ui-layout-south">
-      <label for="server">Velocigraphtor address:</label><input id="server" name="server" type="text" value="http://localhost:9000">
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <h3>grahlcopter</h3>
+        </div>
+      </div>
     </div>
-    <div id="stat-list" class="ui-layout-west"></div>
+    <br />
+    <br />
+    <div class="container-fluid">
+      <div class="sidebar" id="sidebar">
+        This is the sidebar
+      </div>
+      <div class="content">
+        <div id="graph" style="width: 100%"></div>
+        <div class="clearfix">
+          <label for="server">Velocigraphtor address:</label>
+          <div class="input">
+            <input class="xlarge" id="server" name="server" type="text" value="http://localhost:9000">
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
