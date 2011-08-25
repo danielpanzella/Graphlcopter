@@ -15,8 +15,8 @@ object Application extends Controller {
     html.index()
   }
 
-  def browse(path: Option[String]) = {
-    val p = path.getOrElse("*")
+  def browse(metric: Option[String]) = {
+    val p = metric.getOrElse("*")
     val req = (:/(veloHost, veloPort) / "browse") <<? Map("metric" -> p)
     http(req >- { x => Json(x) })
   }
