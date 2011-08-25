@@ -17,7 +17,7 @@ object Application extends Controller {
 
   def browse(path: Option[String]) = {
     val p = path.getOrElse("*")
-    val req = (:/(veloHost, veloPort) / "browse") <<? Map("path" -> p)
+    val req = (:/(veloHost, veloPort) / "browse") <<? Map("metric" -> p)
     http(req >- { x => Json(x) })
   }
 
