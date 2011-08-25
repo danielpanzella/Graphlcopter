@@ -17,7 +17,7 @@ object Application extends Controller {
 
   def browse(path: Option[String]) = {
     val p = path.getOrElse(Text("missing parameters, please set path"))
-    val req = (:/(veloHost, veloPort) / browse) <<? Map("path" -> path)
+    val req = (:/(veloHost, veloPort) / "browse") <<? Map("path" -> path)
     http(req >- { x => Text(x) })
   }
 
